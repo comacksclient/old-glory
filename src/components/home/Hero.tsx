@@ -16,7 +16,7 @@ const Hero = () => {
       
       {/* Subtle Pattern Background */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#1E4D58 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+           style={{ backgroundImage: 'radial-gradient(#1E4D58 1px, transparent 1px)', backgroundSize: '40px 40px' } }>
       </div>
       
       {/* Gradient Orbs */}
@@ -41,14 +41,12 @@ const Hero = () => {
           {/* Headline */}
           <div className="space-y-4">
             <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-bold text-slate-900 leading-[1.1] tracking-tight">
-            Looking for a Dentist in Mansarovar?{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E4D58] via-[#2A9D8F] to-[#1E4D58]">
-              Experience Painless, Premium Care
-              </span>
+           Best Dentist in Mansarovar, Jaipur
+              
             </h1>
             
             <p className="text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed">
-             Advanced, painless, and affordable dental treatments trusted by thousands of patients in Mansarovar , Jaipur.
+           Advanced, Painless, and Affordable Dental Care at <span className="font-semibold text-[#1E4D58]">Old Glory</span>.
             </p>
           </div>
 
@@ -113,6 +111,7 @@ const Hero = () => {
                     style={{
                         backgroundImage: `url('https://plus.unsplash.com/premium_photo-1661580641740-f25355dae370?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
                     }}
+                    
                 />
                 
                 {/* Gradient Overlay */}

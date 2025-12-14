@@ -17,17 +17,14 @@ export const viewport: Viewport = {
 };
 
 
-
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://oldglory.in"),
   title: {
-    default:
-      "Old Glory Orthodontics & Dental Care | Best Dentist in Mansarovar, Jaipur",
-    template: "%s | Old Glory Dental Jaipur",
+    default: "Best Dentist in Mansarovar, Jaipur", 
+    template: "%s | Old Glory Dental", 
   },
   description:
-    "Old Glory — Top-rated Dental Clinic in Mansarovar, Jaipur (★4.9). Expert care in root canals, implants, braces, smile design & more. Call +91 88757 00500 to book a free consultation.",
+    "Old Glory: Top-rated Dental Clinic in Mansarovar, Jaipur (★4.9). Expert Root Canals, Implants & Braces.", 
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -47,15 +44,17 @@ export const metadata: Metadata = {
     "Top 5 Dental Clinic in Manasarovar",
     "Top 5 Dental Clinic in Manasarovar Jaipur",
     "Top 5 Dentist Near me",
-    "Dentist near me Jaipur",
-    "Root Canal Jaipur",
-    "Braces Jaipur",
-    "Dental Implants Jaipur",
-    "Teeth Whitening Jaipur",
-    "Orthodontist Jaipur",
-    "Kids Dentist Jaipur",
-    "Emergency Dentist Jaipur",
-    "Old Glory Dental Clinic Jaipur",
+    "Dentist in Mansarovar",
+    "Dental Clinic in Mansarovar",
+    "Best Dentist in Mansarovar Jaipur",
+    "Top Rated Dental Clinic Mansarovar",
+    
+  
+    
+    // Broad "Near Me" (Google localizes these)
+    "Dentist Near me",
+    "Best Dental Clinic Near me",
+  
   ],
   authors: [{ name: "Dr. Tanmay Sharma" }, { name: "Dr. Ridam Jain" }],
   creator: "Old Glory Dental Care",
@@ -78,10 +77,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://oldglory.in",
     siteName: "Old Glory Orthodontics & Dental Care",
-    title:
-      "Best Dental Clinic in Mansarovar, Jaipur | Painless & Affordable Dental Care",
+    title: "Best Dentist in Mansarovar, Jaipur | Old Glory", 
     description:
-      "Looking for a trusted dentist in Jaipur? Old Glory offers implants, braces, RCT & cosmetic dentistry by MDS experts. 1500+ Happy Patients.",
+      "Looking for a trusted dentist in Jaipur? Old Glory offers implants, braces, RCT & cosmetic dentistry. 1500+ Happy Patients.",
     images: [
       {
         url: "/logo.png",
@@ -93,7 +91,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Old Glory Dental | Family & Cosmetic Dentistry Jaipur",
+    title: "Old Glory Dental | Best Dentist in Mansarovar",
     description:
       "Compassionate, advanced dental care for the whole family in Mansarovar, Jaipur.",
     images: ["/logo.png"],
@@ -141,7 +139,7 @@ const jsonLd = {
         "Saturday",
       ],
       "opens": "10:30am - 2.00pm , 5.30pm - 8pm ",
-      "closes": "80:00",
+      "closes": "20:00", 
     },
   ],
   "sameAs": [
@@ -175,8 +173,6 @@ const jsonLd = {
     },
   },
 };
-
-
 
 
 export default function RootLayout({
@@ -226,6 +222,24 @@ export default function RootLayout({
       gtag('config', 'G-WZ5XWS7QNK');
     `}
   </Script>
+    <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            // Google Analytics
+            gtag('config', 'G-WZ5XWS7QNK');
+
+            // Google Ads
+            gtag('config', 'AW-17257667100');
+          `}
+        </Script>
 
   {/* Google Tag Manager */}
   <Script id="gtm-head">

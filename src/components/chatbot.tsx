@@ -397,7 +397,7 @@ export function Chatbot() {
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white overflow-hidden backdrop-blur-sm border border-white/10">
-                <img src="/logo.png" alt="" className="w-full h-full object-contain p-1.5" />
+                <img src="/logo.png" alt="Old Glory Dental Chatbot" className="w-full h-full object-contain p-1.5" />
               </div>
               <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-[#1E4D58] rounded-full animate-pulse"></div>
             </div>
