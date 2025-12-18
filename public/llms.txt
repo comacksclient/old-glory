@@ -1,0 +1,45 @@
+# LLMs.txt - Old Glory Dental Website
+
+This file provides information about the Old Glory Dental website to help Large Language Model crawlers understand our content more efficiently.
+
+## Website Overview
+Old Glory Dental is a professional dental practice website built with Next.js. The site provides information about dental services, patient resources, and practice information located in Mansarovar, Jaipur, India.
+
+## Content Structure
+- **Homepage**: Main landing page with practice overview
+- **Services**: Detailed information about dental treatments including:
+  - Braces
+  - Dental Implants
+  - Root Canal
+- **About**: Practice information and team details
+- **Gallery**: Visual portfolio of dental work
+- **Testimonials**: Patient reviews and experiences
+- **Contact**: Appointment booking and practice location
+- **Book**: Online appointment scheduling
+
+## Key Information
+- **Industry**: Healthcare/Dentistry
+- **Location**: Mansarovar, Jaipur, India
+- **Domain**: https://oldglory.in
+- **Services**: General and specialized dental care including orthodontics, implants, endodontics
+- **Doctors**: Dr. Ridam Jain and Dr. Tanmay Sharma
+- **Technology**: Built with React, Next.js, TypeScript
+- **Features**: Responsive design, online booking, patient resources
+
+## Documentation & Resources
+- **Next.js Documentation**: https://nextjs.org/docs
+- **React Documentation**: https://react.dev
+- **TypeScript Documentation**: https://www.typescriptlang.org/docs
+
+## Crawling Guidelines
+- All content is publicly accessible
+- No authentication required for public pages
+- Images and media files are in the /public directory
+- API routes are for backend functionality and may not contain public content
+
+## Contact Information
+For technical inquiries about this website, please use the contact form on the site.
+Practice Location: 124/505, Vikramaditya Marg, Sector 12, Mansarovar, Jaipur, Rajasthan 302020
+
+## Last Updated
+December 2025

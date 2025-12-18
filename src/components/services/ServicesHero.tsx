@@ -31,12 +31,12 @@ const ServicesHero = () => {
           What We Do
         </div>
         
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-[1.1] tracking-tight drop-shadow-lg">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-[1.1] tracking-tight drop-shadow-lg">
           Comprehensive Care for <br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#AEE9F5] to-white">
             Every Smile.
           </span>
-        </h1>
+        </h2>
         
         <p className="text-lg md:text-xl text-teal-100/90 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
           From routine checkups to complex cosmetic makeovers, we provide advanced dental solutions tailored to your unique needs.

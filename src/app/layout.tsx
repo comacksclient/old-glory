@@ -20,27 +20,29 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://oldglory.in"),
   title: {
-    default: "Best Dentist in Mansarovar, Jaipur", 
-    template: "%s | Old Glory Dental", 
+    default: "Old Glory Dental - Best Dentist in Mansarovar, Jaipur | Dr. Ridam & Dr. Tanmay", 
+    template: "%s | Old Glory Dental Care", 
   },
   description:
-    "Old Glory: Top-rated Dental Clinic in Mansarovar, Jaipur (★4.9). Expert Root Canals, Implants & Braces.", 
+    "Old Glory Dental: Top-rated dental clinic in Mansarovar, Jaipur (★4.9). Expert dentists Dr. Ridam & Dr. Tanmay provide painless root canals, dental implants, braces & cosmetic dental care.", 
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
   keywords: [
+    "Old Glory Dental",
+    "Dr. Ridam Jain",
+    "Dr. Tanmay Sharma", 
     "Dentist in Mansarovar Jaipur",
     "Dental Clinic Mansarovar Jaipur",
     "Best Dentist Jaipur",
     "Best Dentist Near me",
-    "Dentist Near me",
     "Dentist in Jaipur",
     "Dentist in Mansarovar",
     "Best Dental Clinic Near me",
     "Best Clinic Near me",
-    "Top 5 Dental Clinic Near me ",
+    "Top 5 Dental Clinic Near me",
     "Top 5 Dental Clinic in Manasarovar",
     "Top 5 Dental Clinic in Manasarovar Jaipur",
     "Top 5 Dentist Near me",
@@ -48,6 +50,11 @@ export const metadata: Metadata = {
     "Dental Clinic in Mansarovar",
     "Best Dentist in Mansarovar Jaipur",
     "Top Rated Dental Clinic Mansarovar",
+    "Root Canal Treatment Jaipur",
+    "Dental Implants Jaipur",
+    "Braces Treatment Jaipur",
+    "Dental Care Jaipur",
+    "Beautiful Smile Jaipur",
     
   
     
@@ -183,6 +190,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+  <link rel="alternate" hrefLang="en-in" href="https://oldglory.in/" />
+  <link rel="alternate" hrefLang="x-default" href="https://oldglory.in/" />
   <meta 
     name="google-site-verification" 
     content="uWA2tIIvONYebH_aQvsnQTDTR0o57N1hdnjv-5IAl5Y" 
@@ -192,6 +201,7 @@ export default function RootLayout({
     type="application/ld+json"
     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
   />
+  
 
   {/* gtag.js */}
   <Script
@@ -222,6 +232,18 @@ export default function RootLayout({
       gtag('config', 'G-WZ5XWS7QNK');
     `}
   </Script>
+
+   <Script
+          id="gtag-phone-config"
+          strategy="afterInteractive"
+        >
+          {`
+            gtag('config', 'AW-17257667100/zVe8CNKBsdMbEJy0jKVA', {
+              phone_conversion_number: '+91 88757 00500'
+            });
+          `}
+        </Script>
+
     <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
           strategy="afterInteractive"

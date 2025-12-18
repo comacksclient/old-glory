@@ -39,12 +39,12 @@ const BracesHero = () => {
             </div>
 
             <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] tracking-tight">
                   Affordable Braces <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E4D58] via-[#2A9D8F] to-[#1E4D58]">
                     With Easy EMI.
                   </span>
-                </h1>
+                </h2>
                 
                 <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
                   Get the perfect smile you deserve without the financial stress. Join <span className="font-bold text-[#1E4D58]">1,500+ happy patients</span> who transformed their confidence with us.
@@ -137,7 +137,7 @@ const BracesHero = () => {
              <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-[#1E4D58] rounded-full blur-[60px] opacity-20 -z-10"></div>
              
              {/* Floating Badge Top Left */}
-             <div className="absolute top-8 -left-6 bg-white py-2 px-4 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2 -rotate-3 z-20 hidden md:flex">
+             <div className="absolute top-8 -left-6 bg-white py-2 px-4 rounded-xl shadow-lg border border-slate-100 items-center gap-2 -rotate-3 z-20 hidden md:flex">
                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                  <span className="text-xs font-bold text-slate-800">Accepting New Patients</span>
              </div>

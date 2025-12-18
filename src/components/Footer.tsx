@@ -134,9 +134,9 @@ import Link from 'next/link';
 
       {/* Decorative Big Text Background */}
       <div className="absolute bottom-[-20px] left-[-20px] opacity-[0.03] pointer-events-none select-none">
-         <h1 className="text-[120px] md:text-[200px] font-bold text-white leading-none whitespace-nowrap">
+         <h2 className="text-[120px] md:text-[200px] font-bold text-white leading-none whitespace-nowrap">
             Old Glory
-         </h1>
+         </h2>
       </div>
 
       {/* Bottom Bar */}

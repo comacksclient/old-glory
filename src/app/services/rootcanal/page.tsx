@@ -97,12 +97,12 @@ const RootCanalHero = () => {
           </div>
 
           <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-slate-900 leading-[1.1] tracking-tight">
                 Severe Tooth Pain? <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1E4D58] via-[#2A9D8F] to-[#1E4D58] font-bold">
                   We Stop It in 60 Mins.
                 </span>
-              </h1>
+              </h2>
               
               <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
                 Painless, Single-Sitting Root Canal Treatment in <span className="font-bold text-[#1E4D58]">Mansarovar, Jaipur</span>. No traffic, no waiting lists.
