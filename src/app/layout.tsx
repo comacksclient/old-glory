@@ -20,11 +20,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://oldglory.in"),
   title: {
-    default: "Old Glory Dental - Best Dentist in Mansarovar, Jaipur | Dr. Ridam & Dr. Tanmay", 
+    default: "Old Glory Dental - Best Dentist in Mansarovar, Jaipur", 
     template: "%s | Old Glory Dental Care", 
   },
   description:
-    "Old Glory Dental: Top-rated dental clinic in Mansarovar, Jaipur (★4.9). Expert dentists Dr. Ridam & Dr. Tanmay provide painless root canals, dental implants, braces & cosmetic dental care.", 
+    "Old Glory Dental: Top-rated dental clinic in Mansarovar, Jaipur (★4.9). Expert dentists provide painless root canals, implants & braces.", 
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     "Dental Implants Jaipur",
     "Braces Treatment Jaipur",
     "Dental Care Jaipur",
-    "Beautiful Smile Jaipur",
+
     
   
     
@@ -67,7 +67,13 @@ export const metadata: Metadata = {
   creator: "Old Glory Dental Care",
   publisher: "Old Glory Dental Care",
   formatDetection: { email: false, address: false, telephone: false },
-  alternates: { canonical: "/" },
+  alternates: { 
+    canonical: "https://oldglory.in",
+    languages: {
+      'en': 'https://oldglory.in',
+      'en-in': 'https://oldglory.in',
+    }
+  },
   robots: {
     index: true,
     follow: true,

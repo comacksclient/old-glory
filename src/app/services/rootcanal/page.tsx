@@ -369,35 +369,52 @@ const PricingLocationSection = () => (
     <Section className="bg-white pt-0">
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Pricing Card */}
-            <div className="bg-white border-2 border-[#E0F2F7] rounded-[32px] p-8 shadow-sm">
-               <h3 className="text-2xl font-bold text-slate-900 mb-6">Simple, Fixed Pricing.</h3>
-               <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                     <span className="font-medium text-slate-600">Consultation</span>
-                     <span className="font-bold text-slate-900">₹300</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                     <span className="font-medium text-slate-600">Root Canal Treatment (RCT)</span>
-                     <span className="font-bold text-slate-900">₹3,500 <span className="text-xs font-normal text-slate-400">/tooth</span></span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                     <span className="font-medium text-slate-600">Complex RCT</span>
-                     <span className="font-bold text-slate-900">₹5,500</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                     <span className="font-medium text-slate-600">Re-Root Canal Treatment</span>
-                     <span className="font-bold text-slate-900">₹6,500</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                     <span className="font-medium text-slate-600">Zirconia Crown</span>
-                     <span className="font-bold text-slate-900">₹9,000 – ₹12,000</span>
-                  </div>
-               </div>
-               <div className="mt-6 text-xs text-slate-400 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4" /> No Hidden Fee Promise — final price given before treatment.
-               </div>
-            </div>
+<div className="bg-white border-2 border-[#E0F2F7] rounded-[40px] p-10 shadow-sm flex flex-col h-full hover:border-[#1E4D58]/20 transition-all duration-300">
+  {/* Header */}
+  <div className="mb-8">
+    <h3 className="text-3xl font-bold text-slate-900 tracking-tight">
+      Simple, Fixed <span className="text-[#1E4D58]">Pricing.</span>
+    </h3>
+    <p className="text-sm text-slate-500 mt-2 font-medium">Transparent upfront costs for your peace of mind.</p>
+  </div>
 
+  {/* Pricing Items */}
+  <div className="space-y-5 mb-10">
+    <div className="group flex justify-between items-center p-4 rounded-2xl border border-slate-50 bg-slate-50/50 transition-colors hover:bg-white hover:border-[#E0F2F7]">
+      <div>
+        <span className="text-[10px] font-bold text-[#1E4D58] uppercase tracking-widest block mb-1">Standard</span>
+        <span className="font-bold text-slate-700">Initial Consultation</span>
+      </div>
+      <span className="text-2xl font-black text-slate-900">₹300</span>
+    </div>
+
+    <div className="group flex justify-between items-center p-4 rounded-2xl border border-slate-50 bg-slate-50/50 transition-colors hover:bg-white hover:border-[#E0F2F7]">
+      <div>
+        <span className="text-[10px] font-bold text-[#1E4D58] uppercase tracking-widest block mb-1">Specialized</span>
+        <span className="font-bold text-slate-700">Root Canal (RCT)</span>
+      </div>
+      <div className="text-right">
+        <span className="text-2xl font-black text-slate-900">₹3,500</span>
+        <span className="block text-[10px] text-slate-400 font-medium">per tooth</span>
+      </div>
+    </div>
+  </div>
+
+  
+
+  {/* Footer */}
+  <div className="mt-auto">
+    <div className="flex items-center gap-3 p-4 rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-200">
+      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+        <ShieldCheck className="w-5 h-5 text-cyan-400" />
+      </div>
+      <p className="text-[11px] leading-tight font-medium">
+        <span className="font-bold text-white block">No Hidden Fee Promise</span>
+        The price we quote is the final price you pay.
+      </p>
+    </div>
+  </div>
+</div>
             {/* Location Card */}
             <div className="bg-[#1E4D58] rounded-[32px] p-8 text-white relative overflow-hidden flex flex-col justify-between">
                <div className="relative z-10">
