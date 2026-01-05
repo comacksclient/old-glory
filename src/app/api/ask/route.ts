@@ -5,6 +5,14 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 import { PineconeStore } from "@langchain/pinecone";
 import { Pinecone as PineconeClient } from "@pinecone-database/pinecone";
 
+
+const classifierLLM = new ChatOpenAI({
+  model: "gpt-5-nano",
+  temperature: 1,
+  openAIApiKey: process.env.OPENAI_API_KEY,
+});
+
+
 const llm = new ChatOpenAI({
   model: "gpt-5-nano",
   temperature: 1,
@@ -16,24 +24,28 @@ const embeddings = new OpenAIEmbeddings({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
 
-let vectorStore: PineconeStore | null = null;
+
+let vectorStorePromise: Promise<PineconeStore | null> | null = null;
 
 async function initializePinecone() {
-  if (!vectorStore) {
-    try {
-      const pinecone = new PineconeClient({
-        apiKey: process.env.PINECONE_API_KEY!,
-      });
-      const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
-      vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
-        pineconeIndex,
-        namespace: "dental-info",
-      });
-    } catch (error) {
-      console.error("Pinecone initialization failed:", error);
-    }
+  if (!vectorStorePromise) {
+    vectorStorePromise = (async () => {
+      try {
+        const pinecone = new PineconeClient({
+          apiKey: process.env.PINECONE_API_KEY!,
+        });
+        const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
+        return await PineconeStore.fromExistingIndex(embeddings, {
+          pineconeIndex,
+          namespace: "dental-info",
+        });
+      } catch (error) {
+        console.error("Pinecone initialization failed:", error);
+        return null;
+      }
+    })();
   }
-  return vectorStore;
+  return vectorStorePromise;
 }
 
 const DOCTORS_DB = {
@@ -87,10 +99,12 @@ function extractUserName(msg: string, history: Array<{ role: string; content: st
     }
   }
 
-  for (let i = history.length - 1; i >= 0; i--) {
-    if (history[i].role === "user") {
+
+  const recentHistory = history.slice(-3);
+  for (let i = recentHistory.length - 1; i >= 0; i--) {
+    if (recentHistory[i].role === "user") {
       for (const pattern of patterns) {
-        const match = history[i].content.match(pattern);
+        const match = recentHistory[i].content.match(pattern);
         if (match && match[1]) {
           return match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
         }
@@ -103,6 +117,7 @@ function extractUserName(msg: string, history: Array<{ role: string; content: st
 
 async function intentClassifierNode(state: typeof AgentState.State) {
   const msg = state.user_message.trim();
+
 
   if (msg === "INIT_CHAT") return { intent: "welcome" };
   if (msg.includes("ACTION_NAVIGATE_BOOKING")) return { intent: "booking_form_request" };
@@ -136,7 +151,7 @@ Return ONLY the category word.
 `;
 
   try {
-    const response = await llm.invoke(classifierPrompt);
+    const response = await classifierLLM.invoke(classifierPrompt);
     const intent = response.content.toString().trim().toLowerCase();
     const validIntents = ["find_doctor", "services_list", "emergency", "booking_form_request", "general_chat"];
     return { intent: validIntents.includes(intent) ? intent : "general_chat" };
@@ -156,7 +171,7 @@ async function ragRetrieverNode(state: typeof AgentState.State) {
 
     const query = state.user_message;
     const results = await store.similaritySearch(query, 3);
-    
+
     if (results.length === 0) {
       return { context_from_pinecone: "" };
     }
@@ -176,7 +191,7 @@ async function generalChatNode(state: typeof AgentState.State) {
   const msg = state.user_message;
   const history = state.chat_history || [];
   const pineconeContext = state.context_from_pinecone || "";
-  
+
   const detectedName = extractUserName(msg, history);
   const userName = state.user_name || detectedName;
 
@@ -213,7 +228,7 @@ Basic Clinic Info (always trust this if there is a conflict):
   - Dr. Tanmay Sharma – MDS Orthodontist & Implantologist, 20+ years experience.
 - Location: 124/505, Vikramaditya Marg, Mansarovar, Jaipur.
 - Hours: Monday–Saturday, 10:30 AM–2 PM and 6–8 PM (Closed Sundays).
-- Contact: +91 88757 00500, drtanmaysharma@gmail.com, www.oldglory.in
+- Contact: +91 88757 00500, [drtanmaysharma@gmail.com](mailto:drtanmaysharma@gmail.com), [www.oldglory.in](https://www.oldglory.in)
 
 Conversation so far:
 ${formattedHistory}
@@ -235,7 +250,7 @@ Rules:
    - "Shall we book a visit?"
    - "Would you like to fix an appointment for this?"
    - "If you want, I can help you plan a visit."
-8. For location queries, include this exact sentence in your own words: We are located at: 124/505, Vikramaditya Marg, Mansarovar, Jaipur. You can view us on Maps here: https://www.google.com/maps?q=old+glory+jaipur
+8. For location queries, include this exact sentence in your own words: We are located at: 124/505, Vikramaditya Marg, Mansarovar, Jaipur. You can view us on Maps here: [https://www.google.com/maps?q=old+glory+jaipur](https://www.google.com/maps?q=old+glory+jaipur)
 9. Never give emergency medical advice beyond suggesting urgent in-person visit or calling the clinic.
 
 Your task:
@@ -262,7 +277,7 @@ Your task:
 
 function welcomeMessageNode() {
   const welcomeText = "Namaste! 🙏 Welcome to Old Glory Dental Clinic.\nI'm here to ensure your smile stays healthy. How can I help you today?";
-  
+
   return {
     chat_history: [{ role: "assistant", content: welcomeText }],
     final_response: {
@@ -338,7 +353,7 @@ function retrieveDoctorDetailsNode(state: typeof AgentState.State) {
 
 function bookingFormNode() {
   const responseText = "Great! Let me help you book an appointment. Please provide:";
-  
+
   return {
     final_response: {
       type: "booking_form",
@@ -367,29 +382,27 @@ function bookingFormNode() {
 
 async function bookingConfirmationNode(state: typeof AgentState.State) {
   const msg = state.user_message;
-  let responseText = "Thank you! We have received your request.";
   let name = "";
   let phone = "";
-  
+
   try {
     const parts = msg.split("_");
     const nameIndex = parts.indexOf("NAME");
     const phoneIndex = parts.indexOf("PHONE");
-    
+
     if (nameIndex > -1 && phoneIndex > -1) {
       name = parts.slice(nameIndex + 1, phoneIndex).join(" ");
       phone = parts.slice(phoneIndex + 1).join(" ");
-      
-     
-      try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-        const bookingResponse = await fetch(`${baseUrl}/api/chatbook`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({
+
+
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      fetch(`${baseUrl}/api/chatbook`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           patientName: name,
           phoneNumber: phone,
-          bookingTimestamp: new Date().toLocaleString('en-IN', { 
+          bookingTimestamp: new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             year: 'numeric',
             month: 'short',
@@ -399,25 +412,17 @@ async function bookingConfirmationNode(state: typeof AgentState.State) {
           }),
           bookingSource: "Chatbot",
           appointmentStatus: "Pending Call"
-          }),
-        });
-        
-        const result = await bookingResponse.json();
-        
-        if (result.result === 'success' || result === 'Added') {
-          responseText = `Thanks ${name}! ✅\n\nWe have received your booking request.\n\nOur team will call you at ${phone} shortly to confirm your appointment.\n\n📞 Expect a call within 2 hours during clinic hours (Mon-Sat, 10:30 AM - 2 PM & 6 PM - 8 PM).`;
-        } else {
-          responseText = `Thanks ${name}! We have received your request for ${phone}.\n\nOur clinic staff will call you shortly to confirm your appointment.`;
-        }
-      } catch (apiError) {
-        console.error("Booking API error:", apiError);
-        responseText = `Thanks ${name}! We have your details (${phone}).\n\nOur team will reach out to you soon. If urgent, please call +91 88757 00500.`;
-      }
+        }),
+      }).catch(err => console.error("Background booking error:", err));
     }
   } catch (e) {
     console.error("Parsing error", e);
-    responseText = "Thank you for your interest! Please call us at +91 88757 00500 to book your appointment.";
   }
+
+
+  const responseText = name
+    ? `Thanks ${name}! ✅\n\nWe have received your booking request.\n\nOur team will call you at ${phone} shortly to confirm your appointment.\n\n📞 Expect a call within 2 hours during clinic hours (Mon-Sat, 10:30 AM - 2 PM & 6 PM - 8 PM).`
+    : "Thank you for your interest! Please call us at +91 88757 00500 to book your appointment.";
 
   return {
     chat_history: [
@@ -434,7 +439,7 @@ async function bookingConfirmationNode(state: typeof AgentState.State) {
 
 function serviceInfoNode(state: typeof AgentState.State) {
   const responseText = "We specialize in:\n\n✨ Cosmetic: Smile Makeovers & Veneers\n🦷 Restorative: Painless Root Canals & Implants\n⚙️ Ortho: Braces & Aligners\n🛡️ General: Laser Dentistry & Kids Care\n\nDr. Ridam & Dr. Tanmay ensure every procedure is gentle.";
-  
+
   return {
     chat_history: [
       { role: "user", content: state.user_message },
@@ -450,7 +455,7 @@ function serviceInfoNode(state: typeof AgentState.State) {
 
 function emergencyNode(state: typeof AgentState.State) {
   const responseText = "🚨 We are here for you.\n\nIf you are in pain, please visit us in Mansarovar immediately or call us.\n\n📞 +91 88757 00500";
-  
+
   return {
     chat_history: [
       { role: "user", content: state.user_message },
@@ -509,7 +514,7 @@ export async function POST(req: NextRequest) {
     const { message, history, question } = body;
 
     const userMessage = message || question;
-    
+
     let chatHistory: Array<{ role: string; content: string }> = [];
     if (Array.isArray(history)) {
       chatHistory = history.map((msg, idx) => ({
@@ -526,7 +531,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(result.final_response);
   } catch (error) {
-    console.error(" Chat Error:", error);
+    console.error("Chat Error:", error);
     return NextResponse.json(
       {
         type: "text",

@@ -10,21 +10,21 @@ const lexend = Lexend_Deca({ subsets: ["latin"] });
 
 
 export const viewport: Viewport = {
-  themeColor: "#1E4D58", 
+  themeColor: "#1E4D58",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5, 
+  maximumScale: 5,
 };
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://oldglory.in"),
+  metadataBase: new URL("https://www.oldglory.in"),
   title: {
-    default: "Old Glory Dental - Best Dentist in Mansarovar, Jaipur", 
-    template: "%s | Old Glory Dental Care", 
+    default: "Old Glory Orthodontics & Dental Care , Jaipur",
+    template: "%s | Old Glory Orthodontics",
   },
   description:
-    "Old Glory Dental: Top-rated dental clinic in Mansarovar, Jaipur (★4.9). Expert dentists provide painless root canals, implants & braces.", 
+    "Top-rated dental clinic in Mansarovar, Jaipur (★4.9). Painless root canals, implants, braces & expert care by senior dentists.",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   keywords: [
     "Old Glory Dental",
     "Dr. Ridam Jain",
-    "Dr. Tanmay Sharma", 
+    "Dr. Tanmay Sharma",
     "Dentist in Mansarovar Jaipur",
     "Dental Clinic Mansarovar Jaipur",
     "Best Dentist Jaipur",
@@ -55,23 +55,23 @@ export const metadata: Metadata = {
     "Braces Treatment Jaipur",
     "Dental Care Jaipur",
 
-    
-  
-    
+
+
+
     // Broad "Near Me" (Google localizes these)
     "Dentist Near me",
     "Best Dental Clinic Near me",
-  
+
   ],
   authors: [{ name: "Dr. Tanmay Sharma" }, { name: "Dr. Ridam Jain" }],
   creator: "Old Glory Dental Care",
   publisher: "Old Glory Dental Care",
   formatDetection: { email: false, address: false, telephone: false },
-  alternates: { 
-    canonical: "https://oldglory.in",
+  alternates: {
+    canonical: "https://www.oldglory.in",
     languages: {
-      'en': 'https://oldglory.in',
-      'en-in': 'https://oldglory.in',
+      'en': 'https://www.oldglory.in',
+      'x-default': 'https://www.oldglory.in',
     }
   },
   robots: {
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://oldglory.in",
     siteName: "Old Glory Orthodontics & Dental Care",
-    title: "Best Dentist in Mansarovar, Jaipur | Old Glory", 
+    title: "Best Dentist in Mansarovar, Jaipur | Old Glory",
     description:
       "Looking for a trusted dentist in Jaipur? Old Glory offers implants, braces, RCT & cosmetic dentistry. 1500+ Happy Patients.",
     images: [
@@ -152,7 +152,7 @@ const jsonLd = {
         "Saturday",
       ],
       "opens": "10:30am - 2.00pm , 5.30pm - 8pm ",
-      "closes": "20:00", 
+      "closes": "20:00",
     },
   ],
   "sameAs": [
@@ -196,50 +196,50 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-  <link rel="alternate" hrefLang="en-in" href="https://oldglory.in/" />
-  <link rel="alternate" hrefLang="x-default" href="https://oldglory.in/" />
-  <meta 
-    name="google-site-verification" 
-    content="uWA2tIIvONYebH_aQvsnQTDTR0o57N1hdnjv-5IAl5Y" 
-  />
 
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-  />
-  
+        <meta
+          name="google-site-verification"
+          content="uWA2tIIvONYebH_aQvsnQTDTR0o57N1hdnjv-5IAl5Y"
+        />
 
-  {/* gtag.js */}
-  <Script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
-  />
-   <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
-      />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-      >
-        {`
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+
+        {/* gtag.js */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
+        />
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-WZ5XWS7QNK');
         `}
-      </Script>
+        </Script>
 
-  <Script id="gtag-init">
-    {`
+        <Script id="gtag-init">
+          {`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-WZ5XWS7QNK');
     `}
-  </Script>
+        </Script>
 
-   <Script
+        <Script
           id="gtag-phone-config"
           strategy="afterInteractive"
         >
@@ -250,7 +250,7 @@ export default function RootLayout({
           `}
         </Script>
 
-    <Script
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WZ5XWS7QNK"
           strategy="afterInteractive"
         />
@@ -269,21 +269,21 @@ export default function RootLayout({
           `}
         </Script>
 
-  {/* Google Tag Manager */}
-  <Script id="gtm-head">
-    {`
+        {/* Google Tag Manager */}
+        <Script id="gtm-head">
+          {`
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-TNPG7VSJ');
     `}
-  </Script>
-</head>
+        </Script>
+      </head>
 
 
       <body className={`${lexend.className} antialiased selection:bg-[#1E4D58] selection:text-white`}>
-       
+
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-TL2C7VR9"
@@ -294,8 +294,8 @@ export default function RootLayout({
         </noscript>
 
         <Navbar />
-        
-      
+
+
         <main className="pt-20 relative min-h-screen">
           {children}
         </main>
