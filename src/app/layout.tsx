@@ -238,6 +238,19 @@ export default function RootLayout({
       gtag('config', 'G-WZ5XWS7QNK');
     `}
         </Script>
+         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17790447164"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17790447164');
+          `}
+        </Script>
 
         <Script
           id="gtag-phone-config"
